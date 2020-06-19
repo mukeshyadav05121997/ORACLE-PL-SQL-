@@ -1,0 +1,28 @@
+Syantex:
+
+	
+Declarations
+
+This section starts with the keyword DECLARE. 
+It is an optional section and defines all variables, cursors, subprograms, and other elements to be used in the program.
+
+2	
+Executable Commands
+
+This section is enclosed between the keywords BEGIN and END and it is a mandatory section. 
+It consists of the executable PL/SQL statements of the program. 
+It should have at least one executable line of code, which may be just a NULL command to indicate that nothing should be executed.
+
+3	
+Exception Handling
+
+This section starts with the keyword EXCEPTION. This optional section contains exception(s) that handle errors in the program.
+
+  example::
+  DECLARE 
+   <declarations section> 
+BEGIN 
+   <executable command(s)>
+EXCEPTION 
+   <exception handling> 
+END;
