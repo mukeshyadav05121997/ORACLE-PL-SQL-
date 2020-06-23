@@ -42,6 +42,44 @@ discount:=amount*0.2;
 end if;
 dbms_output.put_line(discount);
 end;
+=======================================================================================================================================
+CASE
+  DECLARE
+amount number:=101;
+discount number:=0;
+begin
+CASE
+WHEN amount >100
+then
+discount:=amount*0.3;
+WHEN amount >=101 and amount >=201
+then
+discount:=amount*0.2;
+end CASE;
+dbms_output.put_line(discount);
+end;
+=======================================================================================================================================
+WHILE LOOP
+  DECLARE
+COUNTER NUMBER:=10;
+BEGIN
+WHILE COUNTER <20
+LOOP
+DBMS_OUTPUT.PUT_LINE('The value of counter is '|| COUNTER);
+COUNTER:=COUNTER+1;
+END LOOP;
+END;
+===========================================================================================================================================
+FOR LOOP
+  DECLARE
+COUNTER NUMBER:=10;
+BEGIN
+FOR COUNTER  IN 10..30
+LOOP
+DBMS_OUTPUT.PUT_LINE('The value of counter is '|| COUNTER);
+END LOOP;
+END;
+
 
 
   
