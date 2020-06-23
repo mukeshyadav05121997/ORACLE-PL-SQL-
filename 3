@@ -1,66 +1,47 @@
-S.No	Data Type & Description
-1	PLS_INTEGER
+example
 
-Signed integer in range -2,147,483,648 through 2,147,483,647, represented in 32 bits
+declare
+Ordernumber  constant number :=101;  // It can easily override in the begin block hence we are using constant block to stop overriden
+StudentName varchar(20):='Cognizant';
+begin
+Ordernumber :=201;
+dbms_output.put_line(Ordernumber);
+dbms_output.put_line(StudentName);
+end;
+=======================================================================================================================================
+COMMENT
+SINGLE LINE: --MY NAME IS MUKESH
+MULTILINE:*/ MY NAME IS MUKESH    */
 
-2	BINARY_INTEGER
+=======================================================================================================================================
+lOCAL AND GLOBAL VARIABLE
 
-Signed integer in range -2,147,483,648 through 2,147,483,647, represented in 32 bits
+DECLARE
+fIRST NUMBER:=10;
+ BEGIN
+ DBMS_OUTPUT.PUT_LINE(fIRST);
+   declare
+   Second number:=20;
+   begin
+   dbms_output.put_line(second);
+   end;
+  end; 
+  =====================================================================================================================================
+  IF-THEN-ELSE:
+  
+  DECLARE
+amount number:=101;
+discount number:=0;
+begin
+if amount >100
+then
+discount:=amount*0.3;
+elsif amount >=101 and amount >=201
+then
+discount:=amount*0.2;
+end if;
+dbms_output.put_line(discount);
+end;
 
-3	BINARY_FLOAT
 
-Single-precision IEEE 754-format floating-point number
-
-4	BINARY_DOUBLE
-
-Double-precision IEEE 754-format floating-point number
-
-5	NUMBER(prec, scale)
-
-Fixed-point or floating-point number with absolute value in range 1E-130 to (but not including) 1.0E126. A NUMBER variable can also represent 0
-
-6	DEC(prec, scale)
-
-ANSI specific fixed-point type with maximum precision of 38 decimal digits
-
-7	DECIMAL(prec, scale)
-
-IBM specific fixed-point type with maximum precision of 38 decimal digits
-
-8	NUMERIC(pre, secale)
-
-Floating type with maximum precision of 38 decimal digits
-
-9	DOUBLE PRECISION
-
-ANSI specific floating-point type with maximum precision of 126 binary digits (approximately 38 decimal digits)
-
-10	FLOAT
-
-ANSI and IBM specific floating-point type with maximum precision of 126 binary digits (approximately 38 decimal digits)
-
-11	INT
-
-ANSI specific integer type with maximum precision of 38 decimal digits
-
-12	INTEGER
-
-ANSI and IBM specific integer type with maximum precision of 38 decimal digits
-
-13	SMALLINT
-
-ANSI and IBM specific integer type with maximum precision of 38 decimal digits
-
-14	REAL
-
-Floating-point type with maximum precision of 63 binary digits (approximately 18 decimal digits)
-
-Example
-DECLARE 
-   num1 INTEGER; 
-   num2 REAL; 
-   num3 DOUBLE PRECISION; 
-BEGIN 
-   null; 
-END; 
-/ 
+  
