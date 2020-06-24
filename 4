@@ -4,4 +4,31 @@ example:
 declare
 c_id customer.customerid %type;
 c_name customer.name %type;
+
+==============================================================================================================
+Cursor
+~ Oracle creates a memory area known as Context area for processing sql statement which contacin all the information needed for execution
+of program
+~the cursor in the pointer to that context area,PL/SQL area through cursor ;
+~Cursor hold the row and we can give it name also;
+~set of row hold by cursor called active set
+
+there are two type of cursor:
+1.Implicit
+  Implicit cursor is automatically created by oracle whenever dml statement is executed
+  whenever the dml(insert,update,delete) are executed implicit cursor is executed with them
+  implicit cursor is called sql cursor
+  they have following attribute:
+  1. %Found
+    Return TRUE if dml command execute and affected one or more rows or
+    a select into affected one or more rows otherwise return False
+  2.%ISOPEN
+    always return false because sql cursor automatically get closed  after executing
+  
+2.Explicit
+  we can cerate cursor by giving reference to context area
+  1.Declare
+  2.open
+  3.fetch data
+  4.close
   
