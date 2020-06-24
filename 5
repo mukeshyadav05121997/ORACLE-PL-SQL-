@@ -22,4 +22,81 @@ create [or replace] PROCEDURE procedurename
  keyword is used for write only or return the value to calling code;
  INOUT
  assigning the value and return back the value to calling code
+ =======================================================================================================================================
+ EXAMPLE
+ 1.CREATE TABLE
+  create table Students
+(Student_ID number Primary key,
+ Students_Name Varchar(50),
+ Student_Stream varchar(50)
  
+);
+Insert into Students(Student_ID,Students_Name,Student_Stream) values(1,'Akash','CSE');
+Insert into Students(Student_ID,Students_Name,Student_Stream) values(2,'Abhishek','CSE');
+Insert into Students(Student_ID,Students_Name,Student_Stream) values(3,'Bobby','ECE');
+Insert into Students(Student_ID,Students_Name,Student_Stream) values(4,'Dhruva','Mechanical');
+Insert into Students(Student_ID,Students_Name,Student_Stream) values(5,'Dolly','Civil');
+ ======================================================================================================================================================================
+CREATE PROCEDURE
+
+CREATE OR REPLACE PROCEDURE ADD_Student
+(S_ID number,
+ S_Name varchar(50),
+ S_stream(30)
+ 
+)
+as
+begin
+Insert into Students(Student_ID,Students_Name,Student_Stream) values(S_ID,S_Name,S_stream);
+commit;
+dbms_output.put_line('Inserted Successfully');
+end ADD_Student;
+===========================================================================================================================================================================
+Calling the Procedure
+begin
+ADD_Student(6,'Suraj','ECE');
+END;
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+CREATE OR REPLACE PROCEDURE ADD_Student
+(S_ID  in number,
+ S_Name  in varchar,
+ S_stream  in varchar
+ )
+as
+begin
+update Students Set S_id:=8,S_Name:='Rajan',S_stream:='Civil' where STUDENT_ID:=3;
+
+
+commit;
+dbms_output.put_line('Updated Successfully');
+end ADD_Student;
+
+
+begin
+ADD_Student(3,'Suraj','ECE');
+END;
+SELECT * FROM STUDENTS;
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+FUNCTION
+create or replace FUNCTION student
+return number
+is 
+Total number:=0;
+begin
+select count(*) into Total from Students;
+return Total;
+end student;
+ 
+@calling
+
+declare
+c number(2);
+begin
+c:=student();
+dbms_output.put_line(c);
+end;
+
+
