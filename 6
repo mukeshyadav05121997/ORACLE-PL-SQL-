@@ -23,3 +23,58 @@ Exception Handling
  type of exception
  1.no data found
  2.Too many rows
+ =============================================================================================================================================================================
+system defined exception
+ create PROCEDURE muk
+(
+st_id  in number
+)
+as
+st_name Students.Students_Name %TYPE;
+st_stream Students.Student_Stream %TYPE;
+begin
+select Students_Name,Student_Stream 
+INTO st_name, st_stream 
+FROM Students
+where Student_ID=st_id;
+dbms_output.put_line('Student:' || st_name);
+dbms_output.put_line('stream :' || st_stream);
+exception
+when NO_DATA_FOUND THEN
+dbms_output.put_line('Value is not available');
+when TOO_MANY_ROWS then
+dbms_output.put_line('row is not available');
+when OTHERS then
+dbms_output.put_line('Error');
+end;
+execute muk(7);
+
+=============================================================================================================================================================================
+USER-DEFINEED EXCEPTION HANDLING
+create PROCEDURE mukesh
+(
+st_id  in number
+)
+as
+st_name Students.Students_Name %TYPE;
+st_stream Students.Student_Stream %TYPE;
+Ex_St_ID exception;
+begin
+if st_id < 0 then
+raise Ex_St_ID;
+end if;
+select Students_Name,Student_Stream 
+INTO st_name, st_stream 
+FROM Students
+where Student_ID=st_id;
+dbms_output.put_line('Student:' || st_name);
+dbms_output.put_line('stream :' || st_stream);
+exception
+when NO_DATA_FOUND THEN
+dbms_output.put_line('Value is not available');
+when Ex_St_ID then
+dbms_output.put_line('value is less than zero');
+when OTHERS then
+dbms_output.put_line('Error');
+end;
+execute mukes(); //calling
