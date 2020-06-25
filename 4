@@ -24,6 +24,11 @@ there are two type of cursor:
     a select into affected one or more rows otherwise return False
   2.%ISOPEN
     always return false because sql cursor automatically get closed  after executing
+  3.%not found
+   It is opposite to %found,It return true if dml command affect no rows or select statement return no row
+   otherwise its return false
+  4.ROW count
+    return the number of rows affected by unsert,update,delete or return by select statement
   
 2.Explicit
   we can cerate cursor by giving reference to context area
