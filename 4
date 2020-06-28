@@ -36,4 +36,22 @@ there are two type of cursor:
   2.open
   3.fetch data
   4.close
+ ============================================================================================================================= 
+  create procedure studentssss
+(S_id in Students.Student_ID %type)
+is
+
+S_name Students.Student_Name %type;
+S_stream Students.Student_stream %type;
+
+begin
+
+ select Student_ID,Students_Name,Student_Stream into S_id,S_name ,S_stream 
+ from  Students
+ where Student_ID=S_id;
+commit;
+dbms_output.put_line(S_id);
+dbms_output.put_line(S_name);
+dbms_output.put_line(S_stream);
+end studentssss;
   
