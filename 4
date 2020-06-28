@@ -37,21 +37,28 @@ there are two type of cursor:
   3.fetch data
   4.close
  ============================================================================================================================= 
-  create procedure studentssss
+  FETCHING DATA USING EXPLICIT CURSOR(ONE ROW FETCHING)
+  
+create or replace  procedure studen_1
 (S_id in Students.Student_ID %type)
 is
 
-S_name Students.Student_Name %type;
-S_stream Students.Student_stream %type;
+S_name Students.Students_Name %type;
+S_stream Students.Student_Stream %type;
 
-begin
-
- select Student_ID,Students_Name,Student_Stream into S_id,S_name ,S_stream 
+ cursor c is select Students_Name,Student_Stream   //DECLARATION OF CURSOR
  from  Students
  where Student_ID=S_id;
+
+begin
+open c;                                           //OPEN OF CURSOR
+fetch c                                           //FETCHING DATA
+ into S_name ,S_stream ;
+ 
 commit;
 dbms_output.put_line(S_id);
 dbms_output.put_line(S_name);
 dbms_output.put_line(S_stream);
-end studentssss;
-  
+close c;                                         CLOSE OF DATA
+end studen_1;
+
