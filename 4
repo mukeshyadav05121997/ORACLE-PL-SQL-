@@ -77,7 +77,7 @@ begin
 open c;
 LOOP
 fetch c
- into S_name ,S_stream ;
+ into S_name ,S_stream ;   // this can also be eliminate by using records
  
 commit;
 EXIT WHEN C%NOTFOUND;
@@ -93,30 +93,23 @@ end studen_1;
 using Records in cursor
 
 
-create or replace  procedure studen_1
-(S_id in Students.Student_ID %type)
+create or replace procedure add_student
+(s_id in  Students.Student_id %type
+)
 is
-
-
- cursor c is. select Students_Name,Student_Stream 
- from  Students
- where Student_ID=S_id;
-c_rec c%rowtype;
+cursor c is select Students_name,Student_stream 
+from Students
+where Student_id=s_id;
+c_rec c%rowtype;   //record type
 begin
 open c;
-LOOP
-fetch c
- into c_rec ;
- 
-commit;
-EXIT WHEN C%NOTFOUND;
-dbms_output.put_line(c_rec.S_id);
-dbms_output.put_line(c_rec.S_name);
-dbms_output.put_line(c_rec.S_stream);
-END LOOP;
-close c;
-end studen_1;
+fetch c into c_rec;
 
+dbms_output.put_line('The name is '||c_rec.Students_name);
+dbms_output.put_line('The name is '||c_rec.Student_stream);
+close c;
+end add_student;
+execute add_student(2);
 
 
 
