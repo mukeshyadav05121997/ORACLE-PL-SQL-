@@ -91,7 +91,7 @@ end studen_1;
 
 ==========================================================================================================================================================================
 using Records in cursor
-
+Cursor is use to simplify the code 
 
 create or replace procedure add_student
 (s_id in  Students.Student_id %type
@@ -110,6 +110,12 @@ dbms_output.put_line('The name is '||c_rec.Student_stream);
 close c;
 end add_student;
 execute add_student(2);
+
+============================================================================================================================================================================
+CURSOR FOR LOOP
+To eliminate the four step of cursor like declare,open,fetch and close we use cursor for loop it automatically feclare and give output
+
+
 
 
 
