@@ -31,7 +31,7 @@ there are two type of cursor:
     return the number of rows affected by unsert,update,delete or return by select statement
   
 2.Explicit
-  we can cerate cursor by giving reference to context area
+  we can crate cursor by giving reference to context area
   1.Declare
   2.open
   3.fetch data
@@ -61,4 +61,63 @@ dbms_output.put_line(S_name);
 dbms_output.put_line(S_stream);
 close c;                                         CLOSE OF DATA
 end studen_1;
+===========================================================================================================================================================================
+fetching more than one row
+create or replace  procedure studen_1
+(S_id in Students.Student_ID %type)
+is
+
+S_name Students.Students_Name %type;     // To minimize the code we use 
+S_stream Students.Student_Stream %type;
+ cursor c is select Students_Name,Student_Stream 
+ from  Students
+ where Student_ID=S_id;
+
+begin
+open c;
+LOOP
+fetch c
+ into S_name ,S_stream ;
+ 
+commit;
+EXIT WHEN C%NOTFOUND;
+dbms_output.put_line(S_id);
+dbms_output.put_line(S_name);
+dbms_output.put_line(S_stream);
+END LOOP;
+close c;
+end studen_1;
+
+
+==========================================================================================================================================================================
+using Records in cursor
+
+
+create or replace  procedure studen_1
+(S_id in Students.Student_ID %type)
+is
+
+
+ cursor c is. select Students_Name,Student_Stream 
+ from  Students
+ where Student_ID=S_id;
+c_rec c%rowtype;
+begin
+open c;
+LOOP
+fetch c
+ into c_rec ;
+ 
+commit;
+EXIT WHEN C%NOTFOUND;
+dbms_output.put_line(c_rec.S_id);
+dbms_output.put_line(c_rec.S_name);
+dbms_output.put_line(c_rec.S_stream);
+END LOOP;
+close c;
+end studen_1;
+
+
+
+
 
