@@ -1,0 +1,37 @@
+Package:A package is schema  object that group logically related to pl/sql types,files and subprogram like function and procedure
+Package can hold other construct too,such as exception,cursor
+example:movie in Movie folder
+        image in image folder
+Package have two parts:
+1.Specification
+2.Body
+===================================================================================================================================================================
+Advantage
+ 1.Modularity:package let us allow encapsulate logically related to types,items and subprogram in a named of pl/sql module
+ 2.Information Hiding:like give facility like private and public
+ 3.When you call a packaged subprogram for the first time, the whole package is loaded into memory.
+   Later calls to related subprograms in the package require no disk I/O.
+   
+===================================================================================================================================================================
+package specification
+The package specification tell the user of the package what it can do rather then how it will do it
+the specs contains only the header of program code rather then any executable code
+
+syntex:
+ create or replace PACKAGE packagename
+ as
+ program1_header;
+ program2_header;
+ program3_header;
+ end packagename
+ 
+ example:create or replace package add_stud
+ as
+ PROCEDURE ADD_Student
+(S_ID number,
+ S_Name varchar(50),
+ S_stream(30)
+ 
+);
+and so on but only declaration
+   
