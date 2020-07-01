@@ -34,4 +34,43 @@ syntex:
  
 );
 and so on but only declaration
+
+
+
+============================================================================================================================================================================
+Body
+Package body contains the program bodies-which gives the output/or complete code
+
+syntex
+create or replace package body packagename
+as
+program1_header;
+program2_header;
+program3_header;
+end packagename
+
+example:
+create or replace body add_stud
+as
+PROCEDURE ADD_Student
+(S_ID  in number,
+ S_Name  in varchar,
+ S_stream  in varchar
+ )
+as
+begin
+update Students Set S_id:=8,S_Name:='Rajan',S_stream:='Civil' where STUDENT_ID:=3;
+
+
+commit;
+dbms_output.put_line('Updated Successfully');
+end ADD_Student;
+
+end add_stud;
+
+======================================================================================================================================================================
+Execution code
+execute <packagename> procedure or function name
+example
+execute add_student add_student(2);
    
