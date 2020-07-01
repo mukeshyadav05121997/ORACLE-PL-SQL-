@@ -90,6 +90,73 @@ end studen_1;
 
 
 ==========================================================================================================================================================================
+--------------------------------------------RECORDS----------------------------------------------------------------------------------------------------------------------
+==========================================================================================================================================================================
+Record:Records is a composite datatype,which means it can hold more than once information at a one time
+advantage:
+1.easy to main
+2.no need to write the long parameter
+
+example
+create or replace Procedure add_stud
+(c_id in Students.Student_id% type
+)
+as
+C_Name Students.Students_name % type;     // To rempve this line and decrease the size of code we use code
+C_stream students.student_stream % type;  // To rempve this line and decrease the size of code we use code
+begin
+select Students_name,Student_stream 
+into C_Name,C_stream 
+from Students
+where Student_ID=C_id;
+DBMS_OUTPUT.PUT_LINE(C_Name);
+DBMS_OUTPUT.PUT_LINE(C_stream);
+end add_stud;
+
+execute add_stud(2);
+
+-----------------so code after using records------------------------------------------------------
+
+create or replace Procedure add_stud
+(c_id in Students.Student_id% type
+)
+as
+c_rec Students% rowtype;
+begin
+select *
+into c_rec 
+from Students
+where Student_ID=C_id;
+DBMS_OUTPUT.PUT_LINE(c_rec.Students_name);
+DBMS_OUTPUT.PUT_LINE(c_rec.Student_stream );
+end add_stud;
+
+----------------------------passing record as parameter--------------------------------------------------------
+create or replace Procedure add_stud
+(c_id in Students.Student_id% type
+)
+as
+c_rec Students% rowtype;
+begin
+select *
+into c_rec 
+from Students
+where Student_ID=C_id;
+show_Customer(c_rec);
+end add_stud;
+
+create procedure show_Customerss
+(Customer_in in Students % rowtype
+)
+is 
+begin
+dbms_output.put_line(Customer_in.Students_Name);
+dbms_output.put_line(Customer_in.Student_Stream);
+end;
+execute add_stud(4);
+
+===========================================================================================================================================================================
+
 using Records in cursor
 Cursor is use to simplify the code 
 
