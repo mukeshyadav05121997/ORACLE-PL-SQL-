@@ -1,0 +1,58 @@
+Collection:Collection is composite data type which can compose of one or more feild 
+           In Oracle pl/sql ,collection is single dimensional array
+           It consist of one or more element accessible by its index value
+           all the element have same data type
+           
+           ram  mohan  sai
+           1    2      3
+           
+  Advantage:
+           1.Bulk collect:
+             select select statement that retreive multiple row with the single fetch,increase the spped of data retreival
+           2.easy and simplify
+           
+  Terminology:
+           1.Dense collection: there must be no gap between the element 
+             ram  mohan  sai
+             1      2     3
+           2.Sparse Collection:There could be gap between element
+              ram         sai
+              1      2     3
+              
+ =====================================================================================================================================================================
+              
+  Types of collection:
+ 1.Index by Table(Associative array)
+             Collection is Indexed BINARY_INTEGER values or Varchar2 values which do not need to consecutive
+             We can not store this collection into database
+             They were originally called pl/sql
+             You do not need to be initialize a associative array location
+  
+  EXAMPLE:
+  declare
+type Student_type is table of varchar2(100) index by BINARY_INTEGER;
+Students Student_type;
+idx number;
+begin
+Students(1):='Mike';
+Students(2):='John';
+Students(3):='Akshay';
+Students(6):='varun';
+Students(7):='Arjun';
+
+Students.Delete(3);
+
+idx:=Students.First;
+while idx is not null loop
+dbms_output.put_line('The Customer name is ' ||Students(idx));
+idx:=Students.next(idx);
+end loop Display_loop;
+end;
+
+2.NESTED TABLE
+          1.Nested table can be stored in database
+          2. They Can be Indexed by only by Integer
+          3.We can use the Multiset Operator To Perform set operation and to perform equality comparison on nested table
+          
+          
+
