@@ -52,7 +52,136 @@ end;
 2.NESTED TABLE
           1.Nested table can be stored in database
           2. They Can be Indexed by only by Integer
-          3.We can use the Multiset Operator To Perform set operation and to perform equality comparison on nested table
-          
-          
+          3.We can use the Multiset Operator To Perform set operation and to perform equality comparison on nested table.
+          4.we can delete the element
+          declare
+type Student_type is table of varchar2(100);
+Students Student_type:=Student_type();
+idx number;
+begin
+Students.EXTEND(5);
+Students(1):='Mike';
+Students(2):='John';
+Students(3):='Taylor';
+Students(4):='Micheal';
+Students(6):='Jaffrey';    --always work in sequence wise 
+dbms_output.put_line('The First name of list '||Students.First);
+dbms_output.put_line('The Last name of list '||Students.Last);
+idx:=Students.First;
+WHILE IDX IS not null loop
+dbms_output.put_line('The First name of list '||Students(idx));
+idx:=Students.next(idx);
+end loop dispaly_loop;
+end;
 
+3) Varray
+   ~Varrray is similer to nested table except we have to specify the upper bound in the declaration
+   ~Like nested table this can also been stored in database;
+   ~but it can not be delete so it always dense
+   
+   example:
+   declare 
+type Student_type  is varray(5) of varchar(20);
+Students Student_type:=Student_type();
+idx number;
+begin
+Students.extend(5);
+Students(1):='Arjun';
+Students(2):='Mukesh';
+Students(3):='Roshan';
+Students(4):='Suresh';
+idx:=Students.first;
+--students.delete(3); //We can not perform the delete operation
+while idx is not null loop
+dbms_output.put_line(Students(idx));
+idx:=Students.next(idx);
+end loop display_loop;
+end;
+
+===================================================================================================================================================================
+collection_name
+An associative array, nested table, or varray previously declared within the current scope.
+
+
+COUNT
+Returns the number of elements that a collection currently contains,
+which is useful because the current size of a collection is not always known.
+You can use COUNT wherever an integer expression is allowed.
+
+For varrays, COUNT always equals LAST. For nested tables, normally, COUNT equals LAST. 
+But, if you delete elements from the middle of a nested table, COUNT is smaller than LAST.
+
+
+DELETE
+This procedure has three forms. DELETE removes all elements from a collection. 
+DELETE(n) removes the nth element from an associative array or nested table. If n is null, DELETE(n) does nothing. 
+DELETE(m,n) removes all elements in the range m..n from an associative array or nested table.
+If m is larger than n or if m or n is null, DELETE(m,n) does nothing.
+
+
+EXISTS
+EXISTS(n) returns TRUE if the nth element in a collection exists. Otherwise, EXISTS(n) returns FALSE.
+Mainly, you use EXISTS with DELETE to maintain sparse nested tables. 
+You can also use EXISTS to avoid raising an exception when you reference a nonexistent element.
+When passed an out-of-range subscript, EXISTS returns FALSE instead of raising SUBSCRIPT_OUTSIDE_LIMIT.
+
+
+EXTEND
+This procedure has three forms. EXTEND appends one null element to a collection. 
+EXTEND(n) appends n null elements to a collection. 
+EXTEND(n,i) appends n copies of the ith element to a collection.
+
+EXTEND operates on the internal size of a collection. If EXTEND encounters deleted elements, it includes them in its tally.
+
+You cannot use EXTEND with associative arrays.
+
+
+FIRST, LAST
+FIRST and LAST return the first and last (smallest and largest) subscript values in a collection.
+The subscript values are usually integers, but can also be strings for associative arrays. 
+If the collection is empty, FIRST and LAST return NULL.
+If the collection contains only one element, FIRST and LAST return the same subscript value.
+
+For varrays, FIRST always returns 1 and LAST always equals COUNT. 
+For nested tables, normally, LAST equals COUNT. 
+But, if you delete elements from the middle of a nested table, LAST is larger than COUNT.
+
+
+index
+An expression that must return (or convert implicitly to) an integer in most cases, 
+or a string for an associative array declared with string keys.
+
+
+LIMIT
+For nested tables, which have no maximum size, LIMIT returns NULL. 
+For varrays, LIMIT returns the maximum number of elements that a varray can contain (which you must specify in its type definition).
+
+
+NEXT, PRIOR
+PRIOR(n) returns the subscript that precedes index n in a collection. 
+NEXT(n) returns the subscript that succeeds index n. If n has no predecessor, PRIOR(n) returns NULL.
+Likewise, if n has no successor, NEXT(n) returns NULL.
+
+
+TRIM
+This procedure has two forms. TRIM removes one element from the end of a collection. 
+TRIM(n) removes n elements from the end of a collection.
+If n is greater than COUNT, TRIM(n) raises SUBSCRIPT_BEYOND_COUNT. 
+You cannot use TRIM with index-by tables.
+
+TRIM operates on the internal size of a collection. If TRIM encounters deleted elements, it includes them in its tally.
+============================================================================================================================================================================
+
+Multi-Set
+~MultiSet union
+~multiset union Distinct
+~multiset Excepts
+
+declare 
+type student_type is table of number;
+Students Student_type:=Student_type(1,2,3,4,5);
+Students Student_type:=Student_type(6,7,8,9);
+
+for i in Students.First...Students.Last loop
+dbms_output.put_line
+~Multiset Intersect
