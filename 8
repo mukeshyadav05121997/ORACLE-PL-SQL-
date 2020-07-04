@@ -173,15 +173,58 @@ TRIM operates on the internal size of a collection. If TRIM encounters deleted e
 ============================================================================================================================================================================
 
 Multi-Set
+
 ~MultiSet union
+ declare 
+type student_type is table of number;
+Students1 Student_type:=Student_type(1,2,3,4,5);
+Students2 Student_type:=Student_type(6,7,8,9);
+begin
+Students1:=Students1 multiset union Students2;
+
+for i in Students1.First..Students1.Last loop
+dbms_output.put_line(Students1(i));
+end loop;
+end;
+
 ~multiset union Distinct
+ declare 
+type student_type is table of number;
+Students1 Student_type:=Student_type(1,2,3,4,5);
+Students2 Student_type:=Student_type(5,6,7,8,9);
+begin
+Students1:=Students1 multiset union Distinct  Students2;
+
+for i in Students1.First..Students1.Last loop
+dbms_output.put_line(Students1(i));
+end loop;
+end;
+
 ~multiset Excepts
 
 declare 
 type student_type is table of number;
-Students Student_type:=Student_type(1,2,3,4,5);
-Students Student_type:=Student_type(6,7,8,9);
+Students1 Student_type:=Student_type(1,2,3,4,5);
+Students2 Student_type:=Student_type(4,5,6,7,8,9);
+begin
+Students1:=Students1 multiset except Students2;  --
 
-for i in Students.First...Students.Last loop
-dbms_output.put_line
+for i in Students1.First..Students1.Last loop
+dbms_output.put_line(Students1(i));
+end loop;
+end;
+output:1,2,3
+
 ~Multiset Intersect
+Only common value 
+declare 
+type student_type is table of number;
+Students1 Student_type:=Student_type(1,2,3,4,5);
+Students2 Student_type:=Student_type(4,5,6,7,8,9);
+begin
+Students1:=Students1 multiset Intersect Students2;  --
+
+for i in Students1.First..Students1.Last loop
+dbms_output.put_line(Students1(i));
+end loop;
+end;
